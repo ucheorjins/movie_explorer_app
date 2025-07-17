@@ -22,8 +22,8 @@ with st.sidebar.form("filter_form"):
     title_query = st.text_input("Search by Title", value=st.session_state.get("title_query", ""))
     genre_query = st.text_input("Search by Genre", value=st.session_state.get("genre_query", ""))
 
-    year_min, year_max = st.slider("Year Range", int(df["year"].min()), int(df["year"].max()),
-                                   value=st.session_state.get("year_range", (int(df["year"].min()), int(df["year"].max()))))
+    year_min, year_max = st.slider("Year Range", int(df["Year"].min()), int(df["Year"].max()),
+                                   value=st.session_state.get("year_range", (int(df["Year"].min()), int(df["Year"].max()))))
     
     rt_min, rt_max = st.slider("RT Rating %", 0, 100, value=(0, 100))
     imdb_min, imdb_max = st.slider("IMDb Rating", 0.0, 10.0, value=(0.0, 10.0))
