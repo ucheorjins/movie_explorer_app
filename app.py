@@ -5,7 +5,7 @@ import pandas as pd
 df = pd.read_csv("final_movie_info.csv")
 
 st.set_page_config(page_title="🎬 Movie Search", layout="wide")
-st.title("Top 300 Movie of All Time (Maybe)")
+st.title("Top 300 Movies of All Time (Maybe)")
 
 # Safely convert datatypes
 df["year"] = df["year"].astype(str).str.extract(r"(\d{4})").astype(float)
