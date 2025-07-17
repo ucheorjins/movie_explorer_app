@@ -72,9 +72,9 @@ filtered = filtered[
     (filtered["runtime (minutes)"] >= runtime_min) & (filtered["runtime (minutes)"] <= runtime_max)
 ]
 
-#To show all movies 
+#To show all movies and increment index
 st.write(f"🎞️ Showing {len(filtered)} movies:")
-filtered = filtered.reset_index(drop=True)
+filtered.index = filtered.index + 1
 st.dataframe(filtered)
 
 
