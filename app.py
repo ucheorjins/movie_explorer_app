@@ -27,7 +27,7 @@ with st.sidebar.form("filter_form"):
     
     rt_min, rt_max = st.slider("RT Rating %", 0, 100, value=(0, 100))
     imdb_min, imdb_max = st.slider("IMDb Rating", 0.0, 10.0, value=(0.0, 10.0))
-    runtime_min, runtime_max = st.slider("Runtime (min)", 0, int(df["runtime (minutes)"].max()), value=(0, int(df["runtime (minutes)"].max())))
+    runtime_min, runtime_max = st.slider("Runtime (min)", 0, int(df["Runtime (minutes)"].max()), value=(0, int(df["Runtime (minutes)"].max())))
 
     col1, col2 = st.columns([1, 1])
     search_btn = col1.form_submit_button("🔍 Search")
