@@ -8,11 +8,11 @@ st.set_page_config(page_title="🎬 Movie Search", layout="wide")
 st.title("Top 300 Movies of All Time (Maybe)")
 
 # Safely convert datatypes
-df["year"] = df["year"].astype(str).str.extract(r"(\d{4})").astype(float)
+df["Year"] = df["Year"].astype(str).str.extract(r"(\d{4})").astype(float)
 df["RT rating (%)"] = pd.to_numeric(df["RT rating (%)"], errors="coerce")
-df["imdb rating"] = pd.to_numeric(df["imdb rating"], errors="coerce")
-df["runtime (minutes)"] = pd.to_numeric(df["runtime (minutes)"], errors="coerce")
-df["genre"] = df["genre"].fillna("")
+df["IMDb rating"] = pd.to_numeric(df["IMDb rating"], errors="coerce")
+df["Runtime (minutes)"] = pd.to_numeric(df["Runtime (minutes)"], errors="coerce")
+df["Genre"] = df["Genre"].fillna("")
 
 # Filter sidebar
 # --- Sidebar filters ---
@@ -50,26 +50,26 @@ if search_btn:
 filtered = df.copy()
 
 # --Fill missing values so comparisons don’t break--
-filtered["year"] = filtered["year"].fillna(0)
+filtered["Year"] = filtered["Year"].fillna(0)
 filtered["RT rating (%)"] = filtered["RT rating (%)"].fillna(0)
-filtered["imdb rating"] = filtered["imdb rating"].fillna(0)
-filtered["runtime (minutes)"] = filtered["runtime (minutes)"].fillna(0)
-filtered["genre"] = filtered["genre"].fillna("")
+filtered["IMDb rating"] = filtered["IMDb rating"].fillna(0)
+filtered["Runtime (minutes)"] = filtered["Runtime (minutes)"].fillna(0)
+filtered["Genre"] = filtered["Genre"].fillna("")
 
 # --Title search (optional)--
 if title_query:
-    filtered = filtered[filtered["title"].str.contains(title_query, case=False, na=False)]
+    filtered = filtered[filtered["Title"].str.contains(title_query, case=False, na=False)]
 
 # --Genre search (optional)--
 if genre_query:
-    filtered = filtered[filtered["genre"].str.lower().str.contains(genre_query.lower())]
+    filtered = filtered[filtered["Tenre"].str.lower().str.contains(genre_query.lower())]
 
 # --Numeric filters (always apply, using sliders)--
 filtered = filtered[
-    (filtered["year"] >= year_min) & (filtered["year"] <= year_max) &
+    (filtered["Year"] >= year_min) & (filtered["Year"] <= year_max) &
     (filtered["RT rating (%)"] >= rt_min) & (filtered["RT rating (%)"] <= rt_max) &
-    (filtered["imdb rating"] >= imdb_min) & (filtered["imdb rating"] <= imdb_max) &
-    (filtered["runtime (minutes)"] >= runtime_min) & (filtered["runtime (minutes)"] <= runtime_max)
+    (filtered["IMDb rating"] >= imdb_min) & (filtered["IMDb rating"] <= imdb_max) &
+    (filtered["Runtime (minutes)"] >= runtime_min) & (filtered["Runtime (minutes)"] <= runtime_max)
 ]
 
 #To show all movies and increment index
